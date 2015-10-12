@@ -2,10 +2,11 @@ require 'open-uri'
 require 'csv'
 require 'json'
 
-token = ARGV.shift
+project = ARGV[0]
+token = ARGV[1]
 filename = "stories-#{Time.now.utc}.csv"
 
-stories = JSON.parse open("https://api.clubhouse.io/api/v1/projects/9/stories?token=#{token}").read
+stories = JSON.parse open("https://api.clubhouse.io/api/v1/projects/#{project}/stories?token=#{token}").read
 epics = JSON.parse open("https://api.clubhouse.io/api/v1/epics?token=#{token}").read
 workflow = JSON.parse open("https://api.clubhouse.io/api/v1/workflows?token=#{token}").read
 
